@@ -2,14 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const SuppleText = (props) => {
-  const { label, placeholder } = props;
+  const { suppleText, onChange, label, placeholder, disabled } = props;
   const [isText, setIsText] = useState(false);
-  const [suppleText, setSuppleText] = useState("");
-
-  const handleIsText = e => {
-    setSuppleText(e.target.value);
-  };
-
   useEffect(() => {
     if (suppleText) {
       setIsText(true);
@@ -25,10 +19,11 @@ const SuppleText = (props) => {
         <textarea
           name=""
           id=""
-          maxlength="120"
+          maxLength="120"
           value={suppleText}
-          onChange={handleIsText}
+          onChange={onChange}
           placeholder={placeholder}
+          disabled={disabled}
         />
         {suppleText && (
           <span>{suppleText.length}/120 byte</span>

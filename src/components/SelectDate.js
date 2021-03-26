@@ -4,14 +4,21 @@ import styled from "styled-components";
 import { addDays } from "date-fns";
 
 const SelectDate = props => {
-  const { label } = props;
+  const { label, confirm } = props;
   const [startDate, setStartDate] = useState(new Date());
 
-  const CustomInput = forwardRef(({ value, onClick }, ref) => (
-    <button className="customInput" ref={ref} onClick={onClick}>
+  const CustomInput = forwardRef(({ value, onClick }, ref) => {
+    if(confirm) {
+      return (
+        <input type="text" value={value}/>
+      )
+    } else {
+      return (
+        <button className="customInput" ref={ref} onClick={onClick}>
       {value}
     </button>
-  ));
+      )
+    }});
 
   return (
     <StyledWrap>

@@ -1,23 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
-const TimeList = () => {
-  const [selectTime, setSelectTime] = useState();
-  const [progressBar, setProgressBar] = useState(1);
+const TimeList = (props) => {
+  const { selectTime, onClick } = props
 
-  const handleChangeTime = item => {
-    setSelectTime(item);
-  };
-
-  useEffect(() => {
-    console.log(selectTime,progressBar);
-  }, [selectTime,progressBar]);
-
-  useEffect(() => {
-    if(2 > progressBar && selectTime) {
-      setProgressBar(2)
-    }
-  }, [selectTime, progressBar])
 
   const TimeList = ["16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30"];
 
@@ -28,7 +14,7 @@ const TimeList = () => {
         {TimeList.map(item => {
           const isSelected = selectTime === item ? "selected" : "";
           return (
-            <button key={item} className={isSelected} onClick={() => handleChangeTime(item)}>
+            <button key={item} className={isSelected} onClick={() => onClick(item)}>
               {item}
             </button>
           );
