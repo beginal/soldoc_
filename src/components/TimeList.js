@@ -39,7 +39,7 @@ const StyledWrap = styled.div`
   min-height: 100px;
   .btnList {
     display: flex;
-    justify-content: space-around;
+    justify-content: cetner;
     flex-flow: row wrap;
     flex-shrink: 1;
     > button {
@@ -52,6 +52,7 @@ const StyledWrap = styled.div`
       height: 40px;
       font-size: 14px;
       margin: 4px 0;
+      margin-right: 4px;
       line-height: 17px;
       font-weight: 500;
       cursor: pointer;

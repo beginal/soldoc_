@@ -17,6 +17,7 @@ const App = () => {
 };
 
 const GlobalStyleWrap = styled.div`
+  height: 100vh;
   .label {
     font-size: 14px;
     line-height: 17px;
