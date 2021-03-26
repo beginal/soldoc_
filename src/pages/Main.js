@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 
 import "react-datepicker/dist/react-datepicker.css";
 import TimeList from "../components/TimeList";
@@ -9,10 +10,13 @@ import SuppleText from "../components/SuppleText";
 import Button from "../components/Button";
 import SelectDate from "../components/SelectDate";
 import Header from "../components/Header";
+import { changeReserve } from "../redux/soldocReducer";
 
 const Main = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [progressBar, setProgressBar] = useState(30);
+  const [startDate, setStartDate] = useState(new Date());
   const [selectTime, setSelectTime] = useState();
   const [suppleText, setSuppleText] = useState("");
 
@@ -29,6 +33,13 @@ const Main = () => {
       return alert("시간대를 선택해주세요.");
     }
     setProgressBar(100);
+    dispatch(changeReserve({
+      year: startDate.getFullYear(),
+      month: startDate.getMonth()+1,
+      date: startDate.getDate(),
+      time: selectTime,
+      message: suppleText,
+    }))
     history.push("/confirm");
   };
 
@@ -45,7 +56,7 @@ const Main = () => {
     <StyledWrap progressBar={progressBar}>
       <div className="progressBar"></div>
       <Header>진료 예약하기 (진료 날짜 예약)</Header>
-      <SelectDate dateFormat="MM / dd / yyyy" label="날짜" />
+      <SelectDate startDate={startDate} onChange={setStartDate} dateFormat="MM / dd / yyyy" label="날짜" />
       <TimeList selectTime={selectTime} onClick={handleChangeTime} />
       <SuppleText
         suppleText={suppleText}
@@ -72,11 +83,5 @@ const StyledWrap = styled.div`
     height: 4px;
     width: ${({ progressBar }) => `${progressBar}%`};
     background: linear-gradient(#50a0e0 0%, #a4d4f4 100%);
-  }
-  .label {
-    font-size: 14px;
-    line-height: 17px;
-    margin-bottom: 12px;
-    color: #1e1e1e;
   }
 `;

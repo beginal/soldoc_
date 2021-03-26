@@ -25,7 +25,7 @@ const SuppleText = (props) => {
           placeholder={placeholder}
           disabled={disabled}
         />
-        {suppleText && (
+        {(suppleText && !disabled) && (
           <span>{suppleText.length}/120 byte</span>
         )}
       </div>

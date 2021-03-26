@@ -1,57 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
-import TimeList from "../components/TimeList";
 import SuppleText from "../components/SuppleText";
 import Button from "../components/Button";
-import SelectDate from "../components/SelectDate";
 import Header from "../components/Header";
+
+import { useSelector } from "react-redux";
 
 const Confirm = () => {
   const history = useHistory();
-  const [progressBar, setProgressBar] = useState(30);
-  const [selectTime, setSelectTime] = useState();
-  const [suppleText, setSuppleText] = useState("");
-  const [disabled, setDisabled] = useState(true)
-
-  const handleIsText = e => {
-    setSuppleText(e.target.value);
-  };
-
-  const handleChangeTime = item => {
-    setSelectTime(item);
-  };
+  const { reserve } = useSelector(state => state.soldocReducer);
 
   const handleClick = () => {
-    if(!selectTime) {
-      return alert("시간대를 선택해주세요.")
-    }
-    setProgressBar(100);
-    history.push("/confirm")
-  };
+    alert("예약이 완료되었습니다.")
+  }
 
   useEffect(() => {
-    if (selectTime && 31 > progressBar) {
-      setProgressBar(prev => prev + 30);
+    if(reserve.time === 0 || reserve.year === 0) {
+      history.push("/");
     }
-    if (suppleText.length > 0 && 61 > progressBar) {
-      setProgressBar(prev => prev + 40);
-    }
-  }, [progressBar, selectTime, suppleText.length]);
+  }, [history, reserve])
 
   return (
-    <StyledWrap progressBar={progressBar}>
+    <StyledWrap>
       <Header>진료 예약 확인 (진료 예약 내역)</Header>
-      <SelectDate label="진료 예약일 및 시간" confirm value="f" />
-      {/* <TimeList selectTime={selectTime} onClick={handleChangeTime} /> */}
+      <div className="confirmInput">
+        <label className="label" htmlFor="">
+          진료 예약일 및 시간
+        </label>
+        <input value={`${reserve.year}년 ${reserve.month}월 ${reserve.date}일, ${reserve.time}`} disabled type="text" />
+      </div>
       <SuppleText
-        suppleText={suppleText}
-        onChange={handleIsText}
-        disabled={disabled}
+        suppleText={reserve.message}
         label="추가 사항 (옵션)"
+        disabled
         placeholder="추가 사항이 없습니다."
       />
       <Button onClick={handleClick}>확인</Button>
@@ -62,22 +47,22 @@ const Confirm = () => {
 export default Confirm;
 
 const StyledWrap = styled.div`
-position: relative;
+  position: relative;
   padding: 20px;
-  .progressBar {
-    position: absolute;
-    top:0;
-    left:0;
-    right:0;
-    transition: width 1s;
-    height: 4px;
-    width: ${({progressBar}) => `${progressBar}%`};
-    background: linear-gradient(#50a0e0 0%, #a4d4f4 100%);
-  }
-  .label {
-    font-size: 14px;
-    line-height: 17px;
-    margin-bottom: 12px;
-    color: #1e1e1e;
+  .confirmInput {
+    display: flex;
+    flex-direction: column;
+    > input {
+      border-radius: 6px;
+      border: 1px solid #edeef0;
+      outline: none;
+      height: 115px;
+      font-weight: 500;
+      flex: 1;
+      font-size: 14px;
+      line-height: 19px;
+      resize: none;
+      padding: 12px 12px 13px 14px;
+    }
   }
 `;

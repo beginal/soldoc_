@@ -10,6 +10,7 @@ const TimeList = (props) => {
   return (
     <StyledWrap>
       <label className="label" htmlFor="">시간</label>
+      {TimeList ? (
       <div className="btnList">
         {TimeList.map(item => {
           const isSelected = selectTime === item ? "selected" : "";
@@ -21,6 +22,10 @@ const TimeList = (props) => {
         })}
         <button>{">"}</button>
       </div>
+
+      ): (
+        <span>* 진료 가능한 시간이 없습니다.</span>
+      )}
     </StyledWrap>
   );
 };
@@ -31,6 +36,7 @@ const StyledWrap = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 30px;
+  min-height: 100px;
   .btnList {
     display: flex;
     justify-content: space-around;
@@ -54,5 +60,10 @@ const StyledWrap = styled.div`
       background: #50a0e0;
       color: white;
     }
+  }
+  > span {
+    color: #b0b0b0;
+    font-size: 14px;
+
   }
 `;
