@@ -44,8 +44,10 @@ export default TimeList;
 const StyledWrap = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
   .btnList {
     display: flex;
+    justify-content: space-around;
     flex-flow: row wrap;
     flex-shrink: 1;
     > button {
@@ -57,9 +59,9 @@ const StyledWrap = styled.div`
       width: 73px;
       height: 40px;
       font-size: 14px;
+      margin: 4px 0;
       line-height: 17px;
       font-weight: 500;
-      margin: 4px;
       cursor: pointer;
     }
     .selected {

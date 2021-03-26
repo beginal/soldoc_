@@ -43,7 +43,7 @@ export default SuppleText;
 const StyledWrap = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10px 0;
+  margin-top: 20px;
   .textWrap {
     display: flex;
     position: relative;
