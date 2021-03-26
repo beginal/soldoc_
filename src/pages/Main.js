@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 import TimeList from "../components/TimeList";
@@ -25,11 +25,11 @@ const Main = () => {
   };
 
   const handleClick = () => {
-    if(!selectTime) {
-      return alert("시간대를 선택해주세요.")
+    if (!selectTime) {
+      return alert("시간대를 선택해주세요.");
     }
     setProgressBar(100);
-    history.push("/confirm")
+    history.push("/confirm");
   };
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const Main = () => {
     <StyledWrap progressBar={progressBar}>
       <div className="progressBar"></div>
       <Header>진료 예약하기 (진료 날짜 예약)</Header>
-      <SelectDate label="날짜" />
+      <SelectDate dateFormat="MM / dd / yyyy" label="날짜" />
       <TimeList selectTime={selectTime} onClick={handleChangeTime} />
       <SuppleText
         suppleText={suppleText}
@@ -61,16 +61,16 @@ const Main = () => {
 export default Main;
 
 const StyledWrap = styled.div`
-position: relative;
+  position: relative;
   padding: 20px;
   .progressBar {
     position: absolute;
-    top:0;
-    left:0;
-    right:0;
+    top: 0;
+    left: 0;
+    right: 0;
     transition: width 1s;
     height: 4px;
-    width: ${({progressBar}) => `${progressBar}%`};
+    width: ${({ progressBar }) => `${progressBar}%`};
     background: linear-gradient(#50a0e0 0%, #a4d4f4 100%);
   }
   .label {

@@ -45,7 +45,7 @@ const Confirm = () => {
   return (
     <StyledWrap progressBar={progressBar}>
       <Header>진료 예약 확인 (진료 예약 내역)</Header>
-      <SelectDate confirm label="진료 예약일 및 시간" />
+      <SelectDate label="진료 예약일 및 시간" confirm value="f" />
       {/* <TimeList selectTime={selectTime} onClick={handleChangeTime} /> */}
       <SuppleText
         suppleText={suppleText}
