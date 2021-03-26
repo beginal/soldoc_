@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 
 const Button = (props) => {
+  const [vh, setVh] = useState(window.innerHeight)
   const {children, onClick} = props;
   return (
-    <StyledWrap onClick={onClick}>
+    <StyledWrap vh={vh} onClick={onClick}>
       {children}
     </StyledWrap>
   )

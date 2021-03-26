@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const SuppleText = (props) => {
-  const { textEdit,  suppleText, onChange, label, placeholder, disabled } = props;
+const SuppleText = props => {
+  const { textEdit, suppleText, onChange, label, placeholder, disabled } = props;
   const [isText, setIsText] = useState(false);
   useEffect(() => {
     if (suppleText) {
@@ -14,23 +14,13 @@ const SuppleText = (props) => {
 
   return (
     <StyledWrap isText={isText}>
-      <div className="label" >
-      <label htmlFor="">{label}</label>
-      {textEdit ? disabled ? <button onClick={textEdit}>수정하기</button> : <button onClick={textEdit}>완료</button> : ""}
+      <div className="label">
+        <label htmlFor="">{label}</label>
+        {textEdit ? disabled ? <button onClick={textEdit}>수정하기</button> : <button onClick={textEdit}>완료</button> : ""}
       </div>
       <div className="textWrap">
-        <textarea
-          name=""
-          id=""
-          maxLength="120"
-          value={suppleText}
-          onChange={onChange}
-          placeholder={placeholder}
-          disabled={disabled}
-        />
-        {(suppleText && !disabled) && (
-          <span>{suppleText.length}/120 byte</span>
-        )}
+        <textarea name="" id="" maxLength="120" value={suppleText} onChange={onChange} placeholder={placeholder} disabled={disabled} />
+        {suppleText && !disabled && <span>{suppleText.length}/120 byte</span>}
       </div>
     </StyledWrap>
   );

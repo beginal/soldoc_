@@ -4,6 +4,7 @@ import Main from "./pages/Main";
 import Confirm from "./pages/Confirm";
 import styled from "styled-components";
 const App = () => {
+
   return (
     <GlobalStyleWrap>
       <Router>
@@ -17,12 +18,12 @@ const App = () => {
 };
 
 const GlobalStyleWrap = styled.div`
-  height: 100vh;
   .label {
     font-size: 14px;
     line-height: 17px;
     margin-bottom: 12px;
     color: #1e1e1e;
+    
   }
 `;
 

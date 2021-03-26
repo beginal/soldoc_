@@ -76,9 +76,6 @@ const Confirm = () => {
 export default Confirm;
 
 const StyledWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   position: relative;
   height: 100%;
   padding: 20px;
@@ -94,6 +91,7 @@ const StyledWrap = styled.div`
     }
   }
   .confirmInput {
+    height: 100%;
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;

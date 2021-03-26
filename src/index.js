@@ -9,7 +9,8 @@ import GlobalStyle from "./GlobalStyle";
 ReactDOM.render(
   <Provider store={store}>
     <Helmet>
-      <title>제작중 입니다.</title>
+    <link href="./public/favicon.ico" rel="shortcut icon" />
+      <title>솔닥 - 진료 예약</title>
       <link href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" />
     </Helmet>
     <GlobalStyle />
